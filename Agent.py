@@ -77,7 +77,7 @@ class Agent(object):
             i +=1
             
         R = 0
-        for i in range(len(rewards)-1, 0, -1):
+        for i in range(len(rewards)-1, -1, -1):
             R = rewards[i] + self.gamma * R
         
         return R, n_state
