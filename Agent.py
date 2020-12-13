@@ -23,7 +23,7 @@ class Agent(object):
         self.Q            = deepQlearning(self.lr, self.n_actions, self.input_dim)
         
     def choose_action(self, state):
-        
+        self.Q.eval()
         if np.random.random()> self.epsilon:
             
             state   = T.tensor(state, dtype=T.float).to(self.Q.device)
@@ -32,7 +32,7 @@ class Agent(object):
             
         else:
             action = np.random.choice(self.action_space)
-        
+        self.Q.train()
         return action
     
     def decrement_epsilon(self):
